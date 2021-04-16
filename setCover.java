@@ -29,25 +29,25 @@ class setCover{
  
         System.out.println();
 
+        //Using while loop to get the best result
         while(k++<10){
         
+            //To store the cost of the selected path
             Set<Integer> costSet=new HashSet<>();
+
+
             LinkedHashSet<Integer> s=new LinkedHashSet<>();
             LinkedHashSet<Integer> universe=new LinkedHashSet<>();
 
             List<Integer> li=new ArrayList<>();
+
+            //Though this isn't required, it is used to 
             List<Integer> path=new ArrayList<>();
 
-            //Defining the universe
 
+            //Defining the universe (all the sets)
             for(int i=0;i<11;i=i+1){
                 universe.add(i);
-            }
-
-            System.out.println("Universe:");
-
-            for(Integer i: universe){
-                System.out.print(i+" ");
             }
 
             //Inserting into the linkedlist
@@ -58,14 +58,19 @@ class setCover{
             }
             Collections.shuffle(li);
 
+
             //Inserting numbers in sets and comparing with the universe
             for(int i=0;i<li.size();i=i+1){
+
+                //It the set == Universe, we've found a path, no need to any more paths
                 if(s.equals(universe)==true){
                     break;
                 }
                 else{
                     s.add(li.get(i));
                     path.add(li.get(i));
+
+                    //It is to add the costs of the selected path
                     costSet.add(cost[i/2]);
                 }
             }
@@ -83,11 +88,14 @@ class setCover{
                 System.out.print(path.get(i)+" ");
             }
     
+            //From the costSet, adding all the costs of the selected path and storing in totalCost
             for(Integer i: costSet){
                 totalCost=totalCost+i;
             }
     
             System.out.println("\ntotalcost: "+totalCost);
+            
+            //Compare this cost with the previous cost and select the optimal one
             min=Math.min(min,totalCost);
             totalCost=0;
 
