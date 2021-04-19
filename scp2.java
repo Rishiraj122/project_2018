@@ -64,18 +64,7 @@ public class scp{
         }
 
         for(int i=0;i<52;i=i+1){
-            float[] temp=new float[52];
             for(j=0;j<52;j=j+1){
-                temp[j]=distanceMatrix[i][j];
-            }
-            Arrays.sort(temp);
-            for(j=0;j<52;j=j+1){
-                distanceMatrix[i][j]=temp[j];
-            }
-        }
-
-        for(int i=0;i<52;i=i+1){
-            for(j=0;j<5;j=j+1){
                 System.out.print(distanceMatrix[i][j]+" ");
             }
             System.out.println("----row "+i+" -------");
