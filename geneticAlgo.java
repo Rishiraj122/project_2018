@@ -4,6 +4,7 @@ import java.lang.ref.Cleaner;
 import java.io.*;
 
 public class geneticAlgo{
+    //READING THE TSP COORDINATES
     ArrayList<String[]> storing;
     public geneticAlgo() throws Exception{
         File file = new File("/Users/sherlock/Desktop/Infosec/project_2018/berlin52.tsp");
@@ -37,6 +38,8 @@ public class geneticAlgo{
         int[][] path=new int[12][9];
 
         int j=0,k=0;
+        
+        //STORING THE READ VALUES IN A ONE - DIMENSIONAL ARRAY [arr]
         while(j<52){
             String[] firstLine = storedValues.get(j);
             for (int i = 1; i < firstLine.length; i++) {
@@ -45,6 +48,7 @@ public class geneticAlgo{
             j++;
         }
 
+        //Storing it in the coOrdinates array (2D Array, Data stored as per TSP file format)
         k=0;
         for(int i=0;i<52;i=i+1){
             for(j=0;j<2;j=j+1){
