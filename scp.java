@@ -63,20 +63,32 @@ public class scp{
             m=0;
         }
 
+        //sorting
+        Map<Float,Integer> mp=new HashMap<>();
+        int[][] sortedIndex=new int[52][52];
+
+        l=0;
+        m=0;
+
         for(int i=0;i<52;i=i+1){
-            float[] temp=new float[52];
             for(j=0;j<52;j=j+1){
-                temp[j]=distanceMatrix[i][j];
+                mp.put(distanceMatrix[i][j],j);
             }
-            Arrays.sort(temp);
-            for(j=0;j<52;j=j+1){
-                distanceMatrix[i][j]=temp[j];
+
+            Map<Float, Integer> map = new TreeMap<Float, Integer>(mp);
+            for (Map.Entry<Float, Integer> entry : map.entrySet())
+            {
+                sortedIndex[l][m++]=(int)entry.getValue();
             }
+            l++;
+            m=0;
+            mp.clear();
+            
         }
 
         for(int i=0;i<52;i=i+1){
             for(j=0;j<5;j=j+1){
-                System.out.print(distanceMatrix[i][j]+" ");
+                System.out.print(sortedIndex[i][j]+" ");
             }
             System.out.println("----row "+i+" -------");
         }
