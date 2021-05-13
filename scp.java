@@ -34,6 +34,29 @@ public class scp{
     
     }
 
+    static int[] facilityPointGenerator(int[][] sortedIndex){
+        Random random=new Random();
+        int count=0;
+        int[] status=new int[52];
+        int[] facilityPoints=new int[52];
+        Arrays.fill(status, 0);
+        HashSet<Integer> s=new HashSet<>();
+        while(s.size()!=52){
+            int initial=random.nextInt(52);
+            if(!s.contains(initial)){
+                s.add(initial);
+                for(int i=0;i<10;i=i+1){
+                    int temp=sortedIndex[initial][i];
+                    status[temp]=1;
+                    s.add(temp);
+                }
+                facilityPoints[count]=initial;
+                count++;
+            }
+        }
+        return facilityPoints;
+    }
+
     public static void main(String[] args) throws Exception {
         ArrayList<String[]> storedValues = returnScanner();
 
@@ -93,6 +116,30 @@ public class scp{
             System.out.println("----row "+i+" -------");
         }
 
+        //-----------------------*#*-------------------------//
+
+        //Generating Path (Step III)
+        int[] facilityPoints=new int[55];
+        int[][] pathMatrix=new int[101][55];
+        //initially fill the array with 0s
+        int q=0;
+
+        while(q<=100){
+            facilityPoints=facilityPointGenerator(sortedIndex);
+            for(int i=0;i<facilityPoints.length;i=i+1){
+                pathMatrix[q][i]=facilityPoints[i];
+            }
+            q++;
+        }
+
+        //---------Facility Points-----------//
+        System.out.println("Facility Points");
+        for(j=0;j<=100;j=j+1){
+            System.out.println("\n Path No. "+j);
+            for(int i=0;i<10;i=i+1){
+                System.out.print(pathMatrix[j][i]+" ");
+            }
+        }
     }
 
 }
